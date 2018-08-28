@@ -90,6 +90,7 @@ class CrudController extends Controller
      */
     public function update(Request $request, $id)
     {
+        
         //validate
         $this->validate($request, [
             'firstname'     =>  'required',
@@ -100,13 +101,12 @@ class CrudController extends Controller
             'mobile'    =>  'required|regex:/[0-9]/|size:10',
             'photo'     =>  'mimes:jpeg,jpg,png'
         ]);
-        
+       
         if(!$request->photo == '')
-        {
-            
+        {   
             // image upload
             $file = $request->file('photo');
-            
+
             $time = microtime('.') * 10000; 
             $imagename = $time.'.'.strtolower( $file->getClientOriginalExtension() );
             $destination = 'profile';
@@ -115,7 +115,7 @@ class CrudController extends Controller
             $file->move($destination, $filename);
             Session()->put('photo', $filename);    
         }
-       
+    
         // update
         $manager    =   Manager::find($id);
         $manager->firstname     =   $request->firstname;

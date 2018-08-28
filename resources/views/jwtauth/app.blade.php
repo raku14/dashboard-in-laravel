@@ -23,7 +23,7 @@
      <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     @if(isset($page))
         @if($page == 'gallery')
@@ -41,7 +41,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/auth/home') }}">
@@ -82,7 +82,7 @@
         <main class="py-4">
             @yield('content')
         </main>
-        @yield('scripts');
+    
     </div>
 
 </body>
