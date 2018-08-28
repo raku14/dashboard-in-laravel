@@ -1,3 +1,4 @@
+
 @extends('jwtauth.app')
 
 @section('content')
@@ -15,4 +16,9 @@
 
     </div>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function($){
+          $('#home').addClass('active');       
+    });
+</script>
 @endsection

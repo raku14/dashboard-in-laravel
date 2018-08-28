@@ -54,6 +54,7 @@
                   <div class="form-group">
                       {{ Form::label('role', 'Role') }}
                      <select class="form-control" name="role">
+                       <option value="">Select</option>
                         @foreach($role as $value)
                         <?php
                           $select = '';
@@ -64,6 +65,7 @@
                             {{$value->name}}
                           </option> 
                         @endforeach
+                     
                      </select>
                   </div>
                   <div class="form-group">
@@ -105,6 +107,10 @@
     $("#photo").change(function(){
         readURL(this);
     });
+
+         
+          $('#create').addClass('active');
+              
     </script>
 @endsection
 

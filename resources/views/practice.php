@@ -33,9 +33,4 @@
 	$user->insert();
 	$user->std();
 
-
-
-
-
-
 ?>

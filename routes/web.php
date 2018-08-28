@@ -179,5 +179,5 @@ Route::get('blade', function(){
 
 // practice 
 Route::get('php', function(){
-  return View('preview');
+  return View('practice');
 });

@@ -58,7 +58,7 @@
             <!-- if there are creation errors, they will show here -->
           {{ Html::ul($errors->all()) }}
           
-          {{ Form::open(array('url' => 'auth')) }}
+          {{ Form::open(array('url' => 'auth/register')) }}
 
               <div class="form-group">
                   {{ Form::label('firstname', 'First Name') }}

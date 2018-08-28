@@ -1,11 +1,7 @@
-
 <?php 
-    $page = basename( $_SERVER['PHP_SELF'] ); 
-    
+   $page = basename( $_SERVER['PHP_SELF'] );
 ?>
 @extends('jwtauth.app')
-
-
  
 @section('content')
  
@@ -44,16 +40,13 @@
         <script>
             $(document).ready(function(){
                 $('#lightgallery').lightGallery(); 
+                 $('#gly').addClass('active');
             });
-        </script>
-
-   
-    
+        </script>  
   </div>
 </div>
+
 @endsection
-
-
 
 
             

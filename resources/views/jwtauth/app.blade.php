@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -64,14 +65,16 @@
 
                     <!-- Right Side Of Navbar -->
                   
-                    <ul class="navbar-nav ml-auto" style="margin-right: 80px;">
+                    <ul class="navbar-nav ml-auto" style="margin-right: 80px;" >
                         @if(session::has('email'))
-                            <div>
-                                <a href="{{url('auth/create')}}"><button class="btn btn-info">Profile</button></a>
-                                
-                                <a href="{{ url('auth/gallery') }}"><button class="btn btn-info">Gallery</button></a>
+                            <div id="link">
+                                <a href="{{url('auth/home')}}"><button id="home" class="btn btn-info">Home</button></a>
 
-                                <a href="{{ url('auth/logout') }}"><button class="btn btn-info">Logout</button></a>
+                                <a href="{{url('auth/create')}}"><button id="create" class="btn btn-info">Profile</button></a>
+                                
+                                <a href="{{ url('auth/gallery') }}"><button id="gly" class="btn btn-info">Gallery</button></a>
+
+                                <a href="{{ url('auth/logout') }}"><button class="btn btn-info ">Logout</button></a>
                             </div>
                         @endif
                     </ul>
