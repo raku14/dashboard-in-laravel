@@ -45,7 +45,7 @@
     <div id="">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/auth/home') }}">
+                <a class="navbar-brand" href="{{ url('/auth') }}">
                     @if(Session::has('first'))
                         {{ Session()->get('first') }}
                     @endif
@@ -68,7 +68,7 @@
                     <ul class="navbar-nav ml-auto" style="margin-right: 80px;" >
                         @if(session::has('email'))
                             <div id="link">
-                                <a href="{{url('auth/home')}}"><button id="home" class="btn btn-info">Home</button></a>
+                                <a href="{{url('auth')}}"><button id="home" class="btn btn-info">Home</button></a>
 
                                 <a href="{{url('auth/create')}}"><button id="create" class="btn btn-info">Profile</button></a>
                                 

@@ -9,6 +9,7 @@ use Validator;
 use Input;
 use Redirect;
 use Session;
+use App\Blog;
 
 
 class CrudController extends Controller
@@ -31,7 +32,9 @@ class CrudController extends Controller
         session()->put('last', $last); 
           
         session()->put('photo', $user[0]->photo);  //user photo session
-        return view('jwtauth.home');               // home.blade.php 
+
+        $blog = DB::table('blog')->where('user_id', Session('user_id'))->get();
+        return view('jwtauth.home', compact('blog'));               // home.blade.php 
     }
 
     /**
@@ -56,7 +59,8 @@ class CrudController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+
     }
 
     /**
@@ -67,7 +71,7 @@ class CrudController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -97,7 +101,7 @@ class CrudController extends Controller
             'lastname'      =>  'required',
             'gender'    =>  'required',
             'dob'       =>  'required',
-            'role'      =>  'required',
+           
             'mobile'    =>  'required|regex:/[0-9]/|size:10',
             'photo'     =>  'mimes:jpeg,jpg,png'
         ]);

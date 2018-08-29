@@ -150,15 +150,16 @@ Route::get('auth/register', 'APIRegisterController@index');
 Route::post('auth/register', 'APIRegisterController@register');
 Route::get('auth/login', 'APILoginController@index');
 Route::post('auth/login', 'APILoginController@login');
-Route::get('auth/home', 'Home@home')->middleware('logout');
 Route::get('auth/logout', 'LogoutController@logout')->middleware('logout');
 Route::get('auth/gallery', 'GalleryController@index')->middleware('logout');
 Route::post('auth/upload', 'GalleryController@upload')->middleware('logout');
+Route::post('auth/blog', 'BlogController@blogpost')->middleware('logout');
+Route::post('auth/blog/update', 'BlogController@blogupdate')->middleware('logout');
 Route::resource('auth', 'CrudController')->middleware('logout');
 
 
 
-// Datatables
+// Datatabless
 Route::get('users', 'DataController@index');
 Route::get('create', 'DataController@create');
 
