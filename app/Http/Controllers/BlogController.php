@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Blog;
 use Redirect;
+use DB;
+
 
 class BlogController extends Controller
 {
@@ -24,8 +26,15 @@ class BlogController extends Controller
         return Redirect::to('auth'); 
    }
 
-   public function blogupdate(){
-   		echo '<pre>';
-   		print_r($_POST);
+   public function blogupdate($id){
+
+   		echo $id;
+   		
+   }
+
+   public function blogdelete($id){
+   		$blog 	=	Blog::find($id);
+   		$blog->delete();
+   		return Redirect::to('auth');
    }
 }

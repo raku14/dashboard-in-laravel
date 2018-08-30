@@ -33,7 +33,7 @@ class CrudController extends Controller
           
         session()->put('photo', $user[0]->photo);  //user photo session
 
-        $blog = DB::table('blog')->where('user_id', Session('user_id'))->get();
+        $blog = DB::table('blog')->where('user_id', Session('user_id'))->orderBy('id', 'desc')->get();
         return view('jwtauth.home', compact('blog'));               // home.blade.php 
     }
 
