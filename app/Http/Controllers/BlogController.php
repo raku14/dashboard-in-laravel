@@ -26,15 +26,25 @@ class BlogController extends Controller
         return Redirect::to('auth'); 
    }
 
-   public function blogupdate($id){
-
-   		echo $id;
+   public function blogupdate(Request $request){
    		
+   		$key = 'text'.$_POST['txt_key'];
+   		$content = $_POST["$key"];
+   		
+   		$id 	= 	$_POST['post_id'];
+   		$blog 	=	Blog::find($id);
+   		$blog->content 	=	$content;
+   		$blog->save();
+
+   		Session()->flash('post_update', 'Post Updated');
+   		return Redirect::to('auth');
+   		 
    }
 
    public function blogdelete($id){
    		$blog 	=	Blog::find($id);
    		$blog->delete();
+   		Session()->flash('post_delete', 'Deleted');
    		return Redirect::to('auth');
    }
 }

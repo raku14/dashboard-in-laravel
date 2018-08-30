@@ -21,7 +21,7 @@
                              {{ Form::text('title', Input::old('title'), array('class' => 'form-control')) }}
                         </div>
                         <div class="form-group">
-                            {{ Form::textarea('content', 'Write something here...', array('class' => 'form-control', 'rows' => '4', 'id' => 'content')) }}
+                            {{ Form::textarea('content', '', array('class' => 'form-control', 'rows' => '4', 'id' => 'content', 'placeholder' => 'Write Something here...')) }}
                         </div>
                         <div class="form-group">
                             <input type="submit" value="Post" class="btn btn-info">
@@ -35,30 +35,42 @@
    
     </div>
      <hr>
-     @if(Session::has('blog'))
+     <div style="height: 30px;" >
+         @if(Session::has('blog'))
         <center>
             <div class="col-sm-1 alert alert-success" id="blog">
                 {{ Session('blog') }}
             </div>
         </center>
-     @endif
-     @if(Session::has('post_update'))
-        <center>
-            <div class="col-sm-2 alert alert-success" id="blog">
-                {{ Session('post_update') }}
-            </div>
-        </center>
-     @endif
+         @endif
+         @if(Session::has('post_update'))
+            <center>
+                <div class="col-sm-2 alert alert-success" id="blog">
+                    {{ Session('post_update') }}
+                </div>
+            </center>
+         @endif
+         @if(Session::has('post_delete'))
+            <center>
+                <div class="col-sm-1 alert alert-danger" id="blog">
+                    {{ Session('post_delete') }}
+                </div>
+            </center>
+         @endif
+     </div>
+     
      @foreach($blog as $key => $blog)
 
+    <form method="POST" action="{{url('auth/blog/update')}}">  
+             @csrf 
+        <input type="hidden" name="post_id" value="{{$blog->id}}">
      <div class="row">
          <div class="col-md-12" style="padding: 20px;">
             <div class="row">
                 <p>
                     <div class="col-md-10" style="position: relative; top: 70px; ">
-            <form method="GET" action="{{url('auth/blog/update', $blog->id)}}">  
-               
-                        <textarea  name="text{{$key}}" id="text{{$key}}" style="background: white;" class="form-control" rows="6" disabled cols="20">{{$blog->content}}</textarea>
+                        
+                        <textarea  name="text{{$key}}" id="text{{$key}}" style="background: white; pointer-events: none; "  class="form-control" rows="6"  cols="20">{{$blog->content}}</textarea>
                     <br><br>
                     </div> 
                        
@@ -70,12 +82,13 @@
                             <div class="col-md-1" >
                                 <input onclick="edit({{$key}})" id="edit{{$key}}" class="btn btn-sm btn-info" type="button" value="Edit">
                             </div>
-                            <div class="col-md-1">
+                            <div class="col-md-1" style="display: none;" id="btn{{$key}}">
+                                <input type="hidden" value="{{$key}}" name="txt_key">
                                <input id="update{{$key}}" class="btn btn-sm btn-warning" type="submit" value="Update">
                             </div> 
-            </form>
+           
                             <div class="col-md-1" style="margin-left: 22px;">   
-                                <a href="{{url( 'auth/blog/delete', $blog->id )}}"><input id="delete{{$key}}" class="btn btn-sm btn-danger" type="submit" value="Delete"></a>    
+                                <a href="{{url( 'auth/blog/delete', $blog->id )}}"><input id="delete{{$key}}" class="btn btn-sm btn-danger" type="button" value="Delete"></a>    
                                
                             </div>
                         </div>
@@ -84,26 +97,38 @@
             </div>
          </div>
      </div>
-         
+    </form>    
      @endforeach
 
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function($){
           $('#home').addClass('active'); 
-          $('#content').click(function(){
-                $('#content').text('');
-          });
           $('#blog').fadeOut(3000);
+
     });
 
     function edit(key)
     {
         var edit = 'edit' + key;
         document.getElementById(edit).classList.add('active');
+
+        var btn = 'btn' + key;
+        var x = document.getElementById(btn);
+        if (x.style.display === "none") {
+            x.style.display = "block";   
+        } 
+        else {
+            x.style.display = "none";
+        }
+
         var text = 'text' + key;
-       
-       document.getElementById(text).disabled = false;
+        var edt = document.getElementById(text);
+        if( edt.style.pointerEvents === "none" ){
+            edt.style.pointerEvents = "auto";
+        } else{
+            edt.style.pointerEvents = "none";
+        }    
     }
     
 </script>

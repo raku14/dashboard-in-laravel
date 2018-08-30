@@ -155,8 +155,9 @@ Route::get('auth/gallery', 'GalleryController@index')->middleware('logout');
 Route::post('auth/upload', 'GalleryController@upload')->middleware('logout');
 Route::post('auth/blog', 'BlogController@blogpost')->middleware('logout');
 
+Route::post('auth/blog/update', 'BlogController@blogupdate')->middleware('logout');
 Route::get('auth/blog/delete/{id}', 'BlogController@blogdelete')->middleware('logout');
-Route::get('auth/blog/update/{id}', 'BlogController@blogupdate')->middleware('logout');
+
 Route::resource('auth', 'CrudController')->middleware('logout');
 
 
