@@ -145,7 +145,7 @@ Route::get('/uuid', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-// JWT Auth
+// JWT Auth    // practice 
 Route::get('auth/register', 'APIRegisterController@index');
 Route::post('auth/register', 'APIRegisterController@register');
 Route::get('auth/login', 'APILoginController@index');
@@ -157,6 +157,9 @@ Route::post('auth/blog', 'BlogController@blogpost')->middleware('logout');
 
 Route::post('auth/blog/update', 'BlogController@blogupdate')->middleware('logout');
 Route::get('auth/blog/delete/{id}', 'BlogController@blogdelete')->middleware('logout');
+
+Route::get('auth/friend/show', 'FriendController@index')->middleware('logout');
+Route::get('auth/friend', 'FriendController@create')->middleware('logout');
 
 Route::resource('auth', 'CrudController')->middleware('logout');
 

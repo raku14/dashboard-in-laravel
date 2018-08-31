@@ -5,6 +5,7 @@
 <head>
     <title>Look! I'm CRUDding</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <style type="text/css">
   .full-height {
@@ -62,11 +63,11 @@
 
               <div class="form-group">
                   {{ Form::label('firstname', 'First Name') }}
-                  {{ Form::text('firstname', Input::old('firstname'), array('class' => 'form-control')) }}
+                  {{ Form::text('firstname', Input::old('firstname'), array('class' => 'form-control', 'id' => 'fname')) }}
               </div>
               <div class="form-group">
                   {{ Form::label('lastname', 'Last Name') }}
-                  {{ Form::text('lastname', Input::old('lastname'), array('class' => 'form-control')) }}
+                  {{ Form::text('lastname', Input::old('lastname'), array('class' => 'form-control', 'id' => 'lname')) }}
               </div>
               <div class="form-group">
                   {{ Form::label('email', 'Email') }}
@@ -80,7 +81,7 @@
                  </select>
               </div><div class="form-group">
                   {{ Form::label('dob', 'Date of Birth') }}
-                  {{ Form::date('dob', Input::old('dob'), array('class' => 'form-control')) }}
+                  {{ Form::date('dob', Input::old('dob'), array('class' => 'form-control fname')) }}
               </div>
               <div class="form-group">
                   {{ Form::label('mobile', 'Mobile No.') }}
@@ -109,5 +110,19 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function($){
+         $('#fname').keyup(function(){
+             $('#fname').css('text-transform', 'capitalize');
+         }); 
+         $('#lname').keyup(function(){
+             $('#lname').css('text-transform', 'capitalize');
+         }); 
+          
+
+    });
+
+    
+</script>
 </body>
 </html>

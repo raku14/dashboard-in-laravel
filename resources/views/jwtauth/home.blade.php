@@ -8,7 +8,7 @@
         <div class="col-md-10">
             <div class="row">
                 <div class="col-md-6">
-                    <img class="img-thumbnail" src="/profile/{{session('photo') != '' ? session('photo') : 'user.png' }}" style="height: 250px; width: 250px; border: 3px double skyblue;">
+                    <img class="img-thumbnail" src="/profile/{{session::has('photo') ? session('photo') : 'user.png' }}" style="height: 250px; width: 250px; border: 3px double skyblue;">
                    
                 </div>
 

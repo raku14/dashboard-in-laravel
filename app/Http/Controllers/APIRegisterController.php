@@ -36,6 +36,7 @@ class APIRegisterController extends Controller
         $manager->mobile        =   $request->mobile;
         $manager->role          =   $request->role;
     	$manager->password 	    =	Hash::make( $request->password );
+        //$manager->photo         =   'user.png';
     	$manager->save();
     	$manager 	=	Manager::first();
     	$token 		=	JWTAuth::fromUser($manager);

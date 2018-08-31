@@ -11,7 +11,7 @@
                     position: fixed;
                     left: 0;
                     bottom: 0;
-                    width: 100%;
+                    width: 100%;  
                 }
     </style>
     <meta charset="utf-8">
@@ -22,9 +22,6 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -36,7 +33,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-   
+
     @if(isset($page))
         @if($page == 'gallery')
                    
@@ -49,10 +46,17 @@
 
             <script src="{{ asset('js/gallery.js') }}" defer></script>
         @endif
+        @if($page == 'friend')   
+          
+            <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        @endif
     @endif
 
 </head>
-<body style="background: #d4ecc4";>
+<body style="background: #d4ecc4;">
     <div id="">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #9bc67d">
             <div class="container">
@@ -83,6 +87,8 @@
 
                                 <a href="{{url('auth/create')}}"><button id="create" class="btn btn-success">Profile</button></a>
                                 
+                                <a href="{{url('auth/friend')}}"><button id="friend" class="btn btn-success">Find Friend</button></a>
+
                                 <a href="{{ url('auth/gallery') }}"><button id="gly" class="btn btn-success">Gallery</button></a>
 
                                 <a href="{{ url('auth/logout') }}"><button class="btn btn-success ">Logout</button></a>
@@ -97,8 +103,8 @@
             @yield('content')
         </main>
     
-    </div>
-    <footer>
+    </div><br><br><br><br>
+    <footer >
         <div class="col-md-12 footer" style="background: #9bc67d; padding: 12px;">
         <center>
             <label>&copy; Copyright {{Date('Y')}}</label>

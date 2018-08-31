@@ -12,8 +12,6 @@ class LogoutController extends Controller
 {
     public function logout(){
     	session::forget('email');
-    	
-    	session()->flush();
     	return Redirect::to('auth/login');
 
     }

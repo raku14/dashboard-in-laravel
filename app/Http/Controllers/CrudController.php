@@ -108,6 +108,11 @@ class CrudController extends Controller
        
         if(!$request->photo == '')
         {   
+            if(Session::has('photo'))
+            {
+                unlink('profile/'.Session('photo'));
+            }
+            
             // image upload
             $file = $request->file('photo');
 
