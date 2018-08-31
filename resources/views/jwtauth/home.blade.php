@@ -24,7 +24,7 @@
                             {{ Form::textarea('content', '', array('class' => 'form-control', 'rows' => '4', 'id' => 'content', 'placeholder' => 'Write Something here...')) }}
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Post" class="btn btn-info">
+                            <input type="submit" value="Post" class="btn btn-success">
                         </div>
                     </form>
                 </div>
@@ -38,14 +38,14 @@
      <div style="height: 30px;" >
          @if(Session::has('blog'))
         <center>
-            <div class="col-sm-1 alert alert-success" id="blog">
+            <div class="col-sm-1 alert alert-primary" id="blog">
                 {{ Session('blog') }}
             </div>
         </center>
          @endif
          @if(Session::has('post_update'))
             <center>
-                <div class="col-sm-2 alert alert-success" id="blog">
+                <div class="col-sm-2 alert alert-primary" id="blog">
                     {{ Session('post_update') }}
                 </div>
             </center>
@@ -104,7 +104,7 @@
 <script type="text/javascript">
     jQuery(document).ready(function($){
           $('#home').addClass('active'); 
-          $('#blog').fadeOut(3000);
+          $('#blog').fadeOut(4000);
 
     });
 

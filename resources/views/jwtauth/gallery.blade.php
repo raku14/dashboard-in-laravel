@@ -13,7 +13,7 @@
 
     echo Form::open(array('url'=>'auth/upload', 'files'=>true));
     echo Form::file('image[]', array('multiple'=>true,'accept'=>'image/*'));
-    echo Form::submit('Upload', array('class' => 'btn btn-info'));
+    echo Form::submit('Upload', array('class' => 'btn btn-success'));
     echo Form::close();
   ?>
   </div>

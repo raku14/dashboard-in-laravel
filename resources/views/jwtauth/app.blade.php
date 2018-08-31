@@ -3,6 +3,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <style type="text/css">
+            html,body{
+                height: 100%;
+            }
+            footer {
+                    position: fixed;
+                    left: 0;
+                    bottom: 0;
+                    width: 100%;
+                }
+    </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,7 +36,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+   
     @if(isset($page))
         @if($page == 'gallery')
                    
@@ -41,9 +52,9 @@
     @endif
 
 </head>
-<body>
+<body style="background: #d4ecc4";>
     <div id="">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background: #9bc67d">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/auth') }}">
                     @if(Session::has('first'))
@@ -68,13 +79,13 @@
                     <ul class="navbar-nav ml-auto" style="margin-right: 80px;" >
                         @if(session::has('email'))
                             <div id="link">
-                                <a href="{{url('auth')}}"><button id="home" class="btn btn-info">Home</button></a>
+                                <a href="{{url('auth')}}"><button id="home" class="btn btn-success">Home</button></a>
 
-                                <a href="{{url('auth/create')}}"><button id="create" class="btn btn-info">Profile</button></a>
+                                <a href="{{url('auth/create')}}"><button id="create" class="btn btn-success">Profile</button></a>
                                 
-                                <a href="{{ url('auth/gallery') }}"><button id="gly" class="btn btn-info">Gallery</button></a>
+                                <a href="{{ url('auth/gallery') }}"><button id="gly" class="btn btn-success">Gallery</button></a>
 
-                                <a href="{{ url('auth/logout') }}"><button class="btn btn-info ">Logout</button></a>
+                                <a href="{{ url('auth/logout') }}"><button class="btn btn-success ">Logout</button></a>
                             </div>
                         @endif
                     </ul>
@@ -87,6 +98,13 @@
         </main>
     
     </div>
-
+    <footer>
+        <div class="col-md-12 footer" style="background: #9bc67d; padding: 12px;">
+        <center>
+            <label>&copy; Copyright {{Date('Y')}}</label>
+        </center>
+        </div>   
+    </footer>
+    
 </body>
 </html>

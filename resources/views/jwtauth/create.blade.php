@@ -75,7 +75,7 @@
                   <div class="form-group">
                       <img src="#" id="image"  style="height: 100px; width: 100px; display: none; position: relative; left: 400px;" />
                   </div>
-                  {{ Form::submit('Update', array('class' => 'btn btn-info')) }}
+                  {{ Form::submit('Update', array('class' => 'btn btn-success')) }}
 
               {{ Form::close() }}
 
