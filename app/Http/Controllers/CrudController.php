@@ -19,6 +19,11 @@ class CrudController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function home(){
+        return view('jwtauth.home');
+    }
+
     public function index()
     {
             $email =  session('email');
@@ -117,10 +122,9 @@ class CrudController extends Controller
             $file = $request->file('photo');
 
             $time = microtime('.') * 10000; 
-            $imagename = $time.'.'.strtolower( $file->getClientOriginalExtension() );
+            $filename = $time.'.'.strtolower( $file->getClientOriginalExtension() );
             $destination = 'profile';
-
-            $filename = $time.$imagename;
+            
             $file->move($destination, $filename);
             Session()->put('photo', $filename);    
         }

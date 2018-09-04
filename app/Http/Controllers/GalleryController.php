@@ -27,10 +27,9 @@ class GalleryController extends Controller
     	foreach ($file as  $file) 
     	{          
             $time = microtime('.') * 10000; 
-            $imagename = $time.'.'.strtolower( $file->getClientOriginalExtension() );
+            $filename = $time.'.'.strtolower( $file->getClientOriginalExtension() );
             $destination = 'gallery';
-
-            $filename = $time.$imagename;
+            
             $file->move($destination, $filename);
             
             $gallery 	=	new Gallery;

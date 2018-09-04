@@ -12,12 +12,12 @@ class FriendController extends Controller
 {
     public function index(){
     	$data = Manager::whereNotIN('id', array(session('user_id')) )->get();
-        return Datatables::of($data)
+        return Datatables::of($data) 
         		->editColumn('mergeColumn',function($data){
         			return $data->firstname.' '.$data->lastname;
         		})
         		->addColumn('action', function($data){
-        			return '<a href="#" class="btn btn-success" style="width: 200px;">Request Send</a>';
+        			return '<a href="#" class="btn btn-success" style="width: 200px;">Send Request</a>';
         		})
         		->make(true);
     }

@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" style="padding: 8px;">
                     <img class="img-thumbnail" src="/profile/{{session::has('photo') ? session('photo') : 'user.png' }}" style="height: 250px; width: 250px; border: 3px double skyblue;">
                    
                 </div>
@@ -78,19 +78,17 @@
                         <b>Title : {{$blog->title }}</b> <br>
                         <b>Date : </b>@php echo strstr($blog->created_at, ' ', true); @endphp
                     
-                        <div class="row">
-                            <div class="col-md-1" >
-                                <input onclick="edit({{$key}})" id="edit{{$key}}" class="btn btn-sm btn-info" type="button" value="Edit">
-                            </div>
-                            <div class="col-md-1" style="display: none;" id="btn{{$key}}">
+                        <div class="row" style="margin-left: 2px;" >
+                          
+                            <input onclick="edit({{$key}})" id="edit{{$key}}" class="btn btn-sm btn-info" type="button" value="Edit" >
+                            &nbsp;
+                            <div class="col-md-2" style="display: none; position: relative;" id="btn{{$key}}">
                                 <input type="hidden" value="{{$key}}" name="txt_key">
                                <input id="update{{$key}}" class="btn btn-sm btn-warning" type="submit" value="Update">
                             </div> 
-           
-                            <div class="col-md-1" style="margin-left: 22px;">   
-                                <a href="{{url( 'auth/blog/delete', $blog->id )}}"><input id="delete{{$key}}" class="btn btn-sm btn-danger" type="button" value="Delete"></a>    
-                               
-                            </div>
+                            &nbsp;
+                            <a href="{{url( 'auth/blog/delete', $blog->id )}}"><input id="delete{{$key}}" class="btn btn-sm btn-danger" type="button" value="Delete"></a>    
+                            
                         </div>
                     </div>  
                 </p>
@@ -103,7 +101,7 @@
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function($){
-          $('#home').addClass('active'); 
+          $('#profile').addClass('active'); 
           $('#blog').fadeOut(4000);
 
     });

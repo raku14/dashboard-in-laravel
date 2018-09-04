@@ -13,6 +13,9 @@
                     bottom: 0;
                     width: 100%;  
                 }
+            li{
+                padding: 2px;
+            }
     </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +24,7 @@
    
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
+   
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -53,6 +56,9 @@
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
         @endif
+    @else
+             <!-- Scripts -->
+             <script src="{{ asset('js/app.js') }}" defer></script>
     @endif
 
 </head>
@@ -80,20 +86,28 @@
 
                     <!-- Right Side Of Navbar -->
                   
-                    <ul class="navbar-nav ml-auto" style="margin-right: 80px;" >
+                    <ul class="navbar-nav ml-auto">
+                        
                         @if(session::has('email'))
-                            <div id="link">
-                                <a href="{{url('auth')}}"><button id="home" class="btn btn-success">Home</button></a>
-
-                                <a href="{{url('auth/create')}}"><button id="create" class="btn btn-success">Profile</button></a>
-                                
-                                <a href="{{url('auth/friend')}}"><button id="friend" class="btn btn-success">Find Friend</button></a>
-
-                                <a href="{{ url('auth/gallery') }}"><button id="gly" class="btn btn-success">Gallery</button></a>
-
-                                <a href="{{ url('auth/logout') }}"><button class="btn btn-success ">Logout</button></a>
-                            </div>
+                            
+                            <li class="nav-item dropdown">
+                                 <a href="{{url('auth')}}" id="profile" class="btn btn-success">Profile</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="{{url('auth/create')}}" id="create" class="btn btn-success">Edit Info</a>
+                            </li>  
+                            <li class="nav-item dropdown">
+                                <a href="{{url('auth/friend')}}" id="friend" class="btn btn-success">Find Friend</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="{{ url('auth/gallery') }}" id="gly" class="btn btn-success">Gallery</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="{{ url('auth/logout') }}" class="btn btn-success ">Logout</a>
+                            </li>
+                           
                         @endif
+                      
                     </ul>
                 </div>
             </div>

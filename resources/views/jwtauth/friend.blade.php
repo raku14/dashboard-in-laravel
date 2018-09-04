@@ -1,7 +1,7 @@
 <?php 
    $page = basename( $_SERVER['PHP_SELF'] );
-?>
 
+?>
 @extends('jwtauth.app')
 
 @section('content')
@@ -22,12 +22,11 @@
 			$('#table').DataTable({
 				processing: true,
 				serverSide: true,
-				ajax: '{{ url('auth/friend/show') }}',
+				ajax: '{{ url("auth/friend/show") }}',
 				columns: [
 					{ data: 'photo', name:'photo',
 						render: function(data, type, full, meta){
-							return "<img src=\"/profile/" + data + "\" height=\"50\" />";
-
+							return "<img src=\"/profile/" + (data != null ? data : 'user.png') + "\" height=\"50\" />";
 						}
 					},
 					{ data: 'mergeColumn', name: 'mergeColumn', searchable: false, sortable : false, visible:true, 

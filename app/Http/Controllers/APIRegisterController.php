@@ -28,8 +28,8 @@ class APIRegisterController extends Controller
     	]);
     	
     	$manager 	=	new Manager;
-    	$manager->firstname 	=	$request->firstname;
-        $manager->lastname      =   $request->lastname;
+    	$manager->firstname 	=	ucfirst($request->firstname);
+        $manager->lastname      =   ucfirst($request->lastname);
     	$manager->email 	    =	$request->email;
         $manager->gender        =   $request->gender;
         $manager->dob           =   $request->dob;

@@ -13,8 +13,8 @@
       <div class="row">
         <div class="col-md-12">
           <h1 align="center">Update</h1>
-          <hr style="border: 2px solid black;"><br>
-            <div class="col-md-6" style="margin-left: 300px;">
+          <hr><br>
+            <div class="col-md-6" style="">
                 
                 <!-- if there are creation errors, they will show here -->
               {{ Html::ul($errors->all()) }}
@@ -73,7 +73,7 @@
                       <input type="file" class="form-control" name="photo" id="photo" accept="image/*">
                   </div>
                   <div class="form-group">
-                      <img src="#" id="image"  style="height: 100px; width: 100px; display: none; position: relative; left: 400px;" />
+                      <img src="#" id="image"  style="height: 100px; width: 100px; display: none; position: relative;" />
                   </div>
                   {{ Form::submit('Update', array('class' => 'btn btn-success')) }}
 
