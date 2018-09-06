@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     
     <style type="text/css">
             html,body{
@@ -29,6 +29,8 @@
    
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -39,7 +41,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     @if(isset($page))
         @if($page == 'gallery')
@@ -54,15 +56,12 @@
             <script src="{{ asset('js/gallery.js') }}" defer></script>
         @endif
         @if($page == 'friend')   
-          
-            <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-        @endif
-    @else
-             <!-- Scripts -->
-             <script src="{{ asset('js/app.js') }}" defer></script>
+           
+            <link  href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" defer>
+            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" defer></script>  
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
+            <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
+        @endif        
     @endif
 
 </head>
@@ -94,15 +93,15 @@
                     <!-- Right Side Of Navbar -->
                   
                     <ul class="navbar-nav ml-auto">
-                            <li class="">
+                            <li class="nav-item dropdown">
                                  <a href="{{url('auth')}}" id="profile" class="btn btn-success">Profile</a>
                             </li>
-                            <li class="">
+                            <li class="nav-item dropdown">
                                 <a href="{{url('auth/create')}}" id="create" class="btn btn-success">Edit Info</a>
                             </li> 
                             @if(Session::has('admin'))
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="btn btn-success" href="" data-toggle="dropdown" aria-expanded="false" v-pre >
+                                    <a id="navbarDropdown" href="" class="btn btn-success" data-toggle="dropdown" aria-expanded="false" v-pre >
                                         Notification
                                         <span class="badge badge-light" id="count"></span>
                                     </a>
@@ -112,13 +111,13 @@
                                    
                                 </li>
                             @endif 
-                            <li class="">
+                            <li class="nav-item dropdown">
                                 <a href="{{url('auth/friend')}}" id="friend" class="btn btn-success">Find Friend</a>
                             </li>
-                            <li class="">
+                            <li class="nav-item dropdown">
                                 <a href="{{ url('auth/gallery') }}" id="gly" class="btn btn-success">Gallery</a>
                             </li>
-                            <li class="">
+                            <li class="nav-item dropdown">
                                 <a href="{{ url('auth/logout') }}" class="btn btn-success ">Logout</a>
                             </li>
 
@@ -138,6 +137,7 @@
             <label>&copy; Copyright {{Date('Y')}}</label>
         </center>
         </div>  
+
         <script type="text/javascript">
 
         function notify()
