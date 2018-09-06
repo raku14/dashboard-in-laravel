@@ -10,6 +10,7 @@ use Input;
 use Redirect;
 use Session;
 use App\Blog;
+use Datatables;
 
 
 class CrudController extends Controller
@@ -20,14 +21,10 @@ class CrudController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function home(){
-        return view('jwtauth.home');
-    }
-
     public function index()
     {
             $email =  session('email');
-            $user = DB::table('manager')->where('email', $email)->get(['id', 'firstname', 'lastname','email', 'photo'])->toarray();
+            $user = DB::table('manager')->where('email', $email)->get(['id', 'firstname', 'lastname','email', 'photo', 'isAdmin'])->toarray();
        
         Session()->put('user_id', $user[0]->id );  // user id
         $first = ucfirst($user[0]->firstname);
@@ -39,7 +36,11 @@ class CrudController extends Controller
         session()->put('photo', $user[0]->photo);  //user photo session
 
         $blog = DB::table('blog')->where('user_id', Session('user_id'))->orderBy('id', 'desc')->get();
-        return view('jwtauth.home', compact('blog'));               // home.blade.php 
+
+         if($user[0]->isAdmin == 1){
+            Session()->put('admin', '(Admin)');
+        }
+        return view('jwtauth.home', compact('blog'));               // home.blade.php     
     }
 
     /**

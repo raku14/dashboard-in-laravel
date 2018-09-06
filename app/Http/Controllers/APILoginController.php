@@ -12,6 +12,9 @@ use DB;
 use Config;
 use Redirect;
 use Session;
+use App\Notifications\NewMessage;
+use Illuminate\Support\Facades\Notification;
+
 
 class APILoginController extends Controller
 {
@@ -43,7 +46,14 @@ class APILoginController extends Controller
     	}catch( JWTException $e ){
     		return response()->json(['error' => 'could_not_create_token'], 500);
     	}
-    	
+
+       
+        //$fromUser = Manager::where('email', 'sachin.techindustan@gmail.com')->first();
+        //$toUser = Manager::where('email', $request->email)->first();
+
+        //$toUser->notify(new NewMessage($fromUser));
+        //Notification::send($toUser, new NewMessage($fromUser));
+        
     	//return  response()->json(compact('token'));
     	session()->put('email', $request->email);  // user email session
         

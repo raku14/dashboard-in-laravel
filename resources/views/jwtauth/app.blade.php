@@ -1,8 +1,9 @@
 
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
     <style type="text/css">
             html,body{
                 height: 100%;
@@ -15,6 +16,10 @@
                 }
             li{
                 padding: 2px;
+            }
+            .fit{
+                text-align: justify;
+                text-justify: inter-word;
             }
     </style>
     <meta charset="utf-8">
@@ -34,8 +39,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
      <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   <script  src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+   
 
     @if(isset($page))
         @if($page == 'gallery')
@@ -73,6 +77,9 @@
                     @if(Session::has('last'))
                         {{ Session()->get('last') }}
                     @endif
+                    @if(Session::has('admin'))
+                        {{(Session('admin'))}}
+                    @endif
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -87,27 +94,34 @@
                     <!-- Right Side Of Navbar -->
                   
                     <ul class="navbar-nav ml-auto">
-                        
-                        @if(session::has('email'))
-                            
-                            <li class="nav-item dropdown">
+                            <li class="">
                                  <a href="{{url('auth')}}" id="profile" class="btn btn-success">Profile</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="">
                                 <a href="{{url('auth/create')}}" id="create" class="btn btn-success">Edit Info</a>
-                            </li>  
-                            <li class="nav-item dropdown">
+                            </li> 
+                            @if(Session::has('admin'))
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="btn btn-success" href="" data-toggle="dropdown" aria-expanded="false" v-pre >
+                                        Notification
+                                        <span class="badge badge-light" id="count"></span>
+                                    </a>
+                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notify" style="background: #d4ecc4; width: 300px;">
+
+                                    </div>
+                                   
+                                </li>
+                            @endif 
+                            <li class="">
                                 <a href="{{url('auth/friend')}}" id="friend" class="btn btn-success">Find Friend</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="">
                                 <a href="{{ url('auth/gallery') }}" id="gly" class="btn btn-success">Gallery</a>
                             </li>
-                            <li class="nav-item dropdown">
+                            <li class="">
                                 <a href="{{ url('auth/logout') }}" class="btn btn-success ">Logout</a>
                             </li>
-                           
-                        @endif
-                      
+
                     </ul>
                 </div>
             </div>
@@ -123,7 +137,38 @@
         <center>
             <label>&copy; Copyright {{Date('Y')}}</label>
         </center>
-        </div>   
+        </div>  
+        <script type="text/javascript">
+
+        function notify()
+        {
+            $.ajax({
+               type:'POST',
+               url:'/api/auth/notify',
+               data:'_token = <?php echo csrf_token() ?>',
+               dataType: 'json',
+               success:function(data)
+               {   
+                    $('#notify').html('');
+                    for (var i = data.length - 1; i >= 0; i--) 
+                    {
+$("#notify").append('<div class="alert alert-danger"><a class="fit" href="auth/notify/seen?id='+ data[i]["id"] +'"> '+ data[i]['title'] + ' post from ' + data[i]['firstname']  + '</a></div>');
+  
+                    }
+                    if( data.length == 0)
+                    {
+                        $('#notify').html('<div class="alert alert-danger">No new notification.</div>');
+                        $('#count').html('');
+                    }else{
+                        $('#count').html(data.length); 
+                    }
+                            
+                }
+            });
+        }
+        setInterval(notify, 1000);
+
+    </script> 
     </footer>
     
 </body>

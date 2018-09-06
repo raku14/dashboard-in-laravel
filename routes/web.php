@@ -161,6 +161,8 @@ Route::get('auth/blog/delete/{id}', 'BlogController@blogdelete')->middleware('lo
 Route::get('auth/friend/show', 'FriendController@index')->middleware('logout');
 Route::get('auth/friend', 'FriendController@create')->middleware('logout');
 
+Route::get('auth/notify', 'NotifyController@index');
+Route::get('auth/notify/seen','NotifyController@seen')->middleware('logout');
 Route::resource('auth', 'CrudController')->middleware('logout');
 
 
@@ -188,3 +190,8 @@ Route::get('blade', function(){
 Route::get('php', function(){
   return View('practice');
 });
+Route::get('practice', 'PracticeController@index');
+
+// notification
+Route::get('notify', 'NotificationController@index');
+

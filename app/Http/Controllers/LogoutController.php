@@ -12,6 +12,7 @@ class LogoutController extends Controller
 {
     public function logout(){
     	session::forget('email');
+    	session::forget('admin');
     	return Redirect::to('auth/login');
 
     }

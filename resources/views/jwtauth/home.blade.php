@@ -74,7 +74,7 @@
                     <br><br>
                     </div> 
                        
-                    <div class="col-md-6" style="position: relative; top: -225px;" >
+                    <div class="col-md-12" style="position: relative; top: -225px;" >
                         <b>Title : {{$blog->title }}</b> <br>
                         <b>Date : </b>@php echo strstr($blog->created_at, ' ', true); @endphp
                     
@@ -99,11 +99,12 @@
      @endforeach
 
 </div>
+
 <script type="text/javascript">
+
     jQuery(document).ready(function($){
           $('#profile').addClass('active'); 
           $('#blog').fadeOut(4000);
-
     });
 
     function edit(key)
@@ -128,7 +129,7 @@
             edt.style.pointerEvents = "none";
         }    
     }
-    
-</script>
+  
+  </script> 
 
 @endsection
