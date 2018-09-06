@@ -17,10 +17,6 @@
             li{
                 padding: 2px;
             }
-            .fit{
-                text-align: justify;
-                text-justify: inter-word;
-            }
     </style>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -46,12 +42,12 @@
     @if(isset($page))
         @if($page == 'gallery')
                    
-            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" defer></script>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" defer></script>
             
             <link href="https://cdn.jsdelivr.net/lightgallery/1.3.9/css/lightgallery.min.css" rel="stylesheet">
             
-            <link href="{{ asset('css/gallery.css') }}" rel="stylesheet">
+            <link href="{{ asset('css/gallery.css') }}" rel="stylesheet" defer>
 
             <script src="{{ asset('js/gallery.js') }}" defer></script>
         @endif
@@ -61,7 +57,8 @@
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js" defer></script>  
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
             <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" defer></script>
-        @endif        
+        @endif
+        
     @endif
 
 </head>
@@ -105,7 +102,7 @@
                                         Notification
                                         <span class="badge badge-light" id="count"></span>
                                     </a>
-                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" id="notify" style="background: #d4ecc4; width: 300px;">
+                                     <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown" id="notify" style="background: #d4ecc4; width: 400px; word-wrap: break-word;">
 
                                     </div>
                                    
@@ -142,19 +139,21 @@
 
         function notify()
         {
-            $.ajax({
-               type:'POST',
+            $.ajax({   
+               type:'GET',
                url:'/api/auth/notify',
                data:'_token = <?php echo csrf_token() ?>',
                dataType: 'json',
                success:function(data)
                {   
-                    $('#notify').html('');
+                    var str = '';
                     for (var i = data.length - 1; i >= 0; i--) 
                     {
-$("#notify").append('<div class="alert alert-danger"><a class="fit" href="auth/notify/seen?id='+ data[i]["id"] +'"> '+ data[i]['title'] + ' post from ' + data[i]['firstname']  + '</a></div>');
-  
+                        str +='<div class="alert alert-danger"><a href="auth/notify/seen?id='+ data[i]["id"] +'"> '+ data[i]['title'] + ' post from ' + data[i]['firstname']  + '</a></div>';
                     }
+
+                    $("#notify").html(str);
+
                     if( data.length == 0)
                     {
                         $('#notify').html('<div class="alert alert-danger">No new notification.</div>');

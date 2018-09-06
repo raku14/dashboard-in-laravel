@@ -12,7 +12,7 @@ class BlogController extends Controller
 {
    public function blogpost(Request $request){
    	 	$this->validate($request, [
-                'title'     =>  'required',
+                'title'     =>  'required|max:100',
                 'content'   =>  'required'
         ]);
 

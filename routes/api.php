@@ -22,4 +22,4 @@ Route::get('ajax',function(){
    return view('message');
 });
 
-Route::post('/auth/notify','AjaxController@index');
+Route::get('/auth/notify','AjaxController@index');

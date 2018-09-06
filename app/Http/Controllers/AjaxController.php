@@ -12,12 +12,10 @@ class AjaxController extends Controller
      	
      	$blog = DB::table('blog')
 		        ->join('manager', 'manager.id', '=', 'blog.user_id')
-		        ->select(['blog.id', 'blog.title', 'manager.firstname', 'manager.lastname'])
+		        ->select(['blog.id', 'blog.title', 'manager.firstname'])
 		 		->where('seen', '0' )
 		        ->get();
-
      	//$blog = Blog::where('seen', 0)->get();
-     	
      	return response()->json($blog);
    }
 
